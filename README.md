@@ -1,34 +1,49 @@
 # prompagate
 
-**Propagates localization prompts across the `@jjlmoya` ecosystem.**
+### *Your prompts go EVERYWHERE*
 
-A minimal, zero-config package that automatically distributes AI prompts to all projects that install it. Designed for the `@jjlmoya` utilities ecosystem to ensure consistent localization guidance across 15 languages.
+---
 
-## What it does
+## What's the magic?
 
-When `@jjlmoya/prompagate` is installed, a `postinstall` script runs and creates a `./prompts/i18n/` folder in your project with language-specific translation guidelines:
+You install `prompagate` and **BOOM** — your project suddenly has 15 language files that teach Claude how to write like a *real human*, not a robot.
+
+No configuration. No nonsense. Just **vibes**.
 
 ```
-prompts/
-└── i18n/
-    ├── es.md  (Español)
-    ├── en.md  (English)
-    ├── pt.md  (Português)
-    ├── pl.md  (Polski)
-    ├── nl.md  (Nederlands)
-    ├── zh.md  (中文)
-    ├── ko.md  (한국어)
-    ├── ja.md  (日本語)
-    ├── tr.md  (Türkçe)
-    ├── id.md  (Bahasa Indonesia)
-    ├── it.md  (Italiano)
-    ├── fr.md  (Français)
-    ├── sv.md  (Svenska)
-    ├── de.md  (Deutsch)
-    └── ru.md  (Русский)
+prompts/i18n/
+├── es.md (Español)
+├── en.md (English)
+├── pt.md (Português)
+├── pl.md (Polski)
+├── nl.md (Nederlands)
+├── zh.md (中文)
+├── ko.md (한국어)
+├── ja.md (日本語)
+├── tr.md (Türkçe)
+├── id.md (Bahasa Indonesia)
+├── it.md (Italiano)
+├── fr.md (Français)
+├── sv.md (Svenska)
+├── de.md (Deutsch)
+└── ru.md (Русский)
 ```
 
-Each file contains localization guidelines for AI assistants, emphasizing **localization over translation** — writing naturally as a native speaker would.
+---
+
+## The Philosophy
+
+**Localize, don't translate.**
+
+Your AI assistant shouldn't sound like a dictionary having an existential crisis. These prompts teach it to:
+- Write like an actual human being (radical, we know)
+- Respect cultural contexts (fancy words, big picture)
+- Keep the vibe warm, professional, *real*
+- Not add random stuff or delete important things
+
+It's basically giving Claude a personality transplant in 15 different languages.
+
+---
 
 ## Installation
 
@@ -36,41 +51,30 @@ Each file contains localization guidelines for AI assistants, emphasizing **loca
 npm install @jjlmoya/prompagate
 ```
 
-That's it. The prompts are automatically created in `./prompts/i18n/`.
+Done. Finished. Kaput. Your project now has prompts.
 
-## Why?
+Go grab a coffee. You've earned it.
 
-Consistent AI-assisted localization across the ecosystem. These prompts guide Claude and other AI tools to:
-- Localize content, not translate it mechanically
-- Write with a human voice
-- Respect cultural context
-- Preserve formatting and information integrity
+---
 
-## Safety
+## Why should you care?
 
-The script only creates files that don't already exist. If you customize a prompt locally, it won't be overwritten.
+Because consistency is **chef's kiss**.
 
-## Skipped in certain contexts
+Imagine an ecosystem where every package, every tool, every project speaks with the same *soul* across 15 languages. Not robots. Not templates. Humans. That's the dream. That's prompagate.
 
-The script skips execution if:
-- Running within the `prompagate` package itself (development)
-- No `INIT_CWD` is set (unconventional install scenarios)
+Your AI translator gets a **masterclass in localization** the moment you install this. No more robotic nonsense. Just pure, natural-born vibes.
 
-## Publishing new versions
+---
 
-```bash
-npm run patch   # 1.0.0 → 1.0.1
-npm run minor   # 1.0.0 → 1.1.0
-npm run major   # 1.0.0 → 2.0.0
-```
+## The Fine Print (but make it fun)
 
-Each command automatically:
-1. Bumps the version
-2. Commits to git
-3. Creates a git tag
-4. Pushes to origin
-5. Triggers GitHub Actions → NPM publish
+- **Smart enough to not overwrite** your custom stuff — if you've tweaked a prompt, we leave it alone
+- **Ghost mode for development** — stays quiet in the package itself
+- **Zero dependencies** — lighter than air, heavier than gold
 
-## License
+---
 
-MIT
+## Made with love for the @jjlmoya ecosystem
+
+*Prompts that propagate. Vibes that elevate.*
