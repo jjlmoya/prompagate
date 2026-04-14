@@ -1,0 +1,26 @@
+{
+    "name": "@jjlmoya/prompagate",
+    "version": "1.0.0",
+    "description": "Propagates shared prompts to all @jjlmoya ecosystem packages",
+    "author": "jjlmoya",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jjlmoya/jjlmoya-prompagate.git"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "type": "module",
+    "files": [
+        "prompts",
+        "scripts"
+    ],
+    "scripts": {
+        "postinstall": "node scripts/postinstall.js",
+        "patch": "npm version patch",
+        "minor": "npm version minor",
+        "major": "npm version major",
+        "postversion": "git push && git push --tags"
+    }
+}
