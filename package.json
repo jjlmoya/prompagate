@@ -18,9 +18,9 @@
     ],
     "scripts": {
         "postinstall": "node scripts/postinstall.js",
+        "postversion": "git push && git push --tags",
         "patch": "npm version patch",
         "minor": "npm version minor",
-        "major": "npm version major",
-        "postversion": "git push && git push --tags"
+        "major": "npm version major"
     }
 }
