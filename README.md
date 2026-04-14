@@ -35,13 +35,13 @@ prompts/i18n/
 
 **Localize, don't translate.**
 
-Your AI assistant shouldn't sound like a dictionary having an existential crisis. These prompts teach it to:
+Any AI assistant shouldn't sound like a dictionary having an existential crisis. These prompts teach it to:
 - Write like an actual human being (radical, we know)
 - Respect cultural contexts (fancy words, big picture)
 - Keep the vibe warm, professional, *real*
 - Not add random stuff or delete important things
 
-It's basically giving Claude a personality transplant in 15 different languages.
+It's basically giving any AI a personality transplant in 15 different languages.
 
 ---
 
@@ -63,7 +63,7 @@ Because consistency is **chef's kiss**.
 
 Imagine an ecosystem where every package, every tool, every project speaks with the same *soul* across 15 languages. Not robots. Not templates. Humans. That's the dream. That's prompagate.
 
-Your AI translator gets a **masterclass in localization** the moment you install this. No more robotic nonsense. Just pure, natural-born vibes.
+Any AI translator gets a **masterclass in localization** the moment you install this. No more robotic nonsense. Just pure, natural-born vibes.
 
 ---
 
