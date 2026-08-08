@@ -68,6 +68,7 @@ for (const candidate of candidates) {
 		execFileSync(npmCommand, ["install", "--ignore-scripts=false"], {
 			cwd: candidate.directory,
 			stdio: "inherit",
+			shell: process.platform === "win32",
 		});
 	} catch (error) {
 		failures.push(candidate.directory);
@@ -109,4 +110,3 @@ function dependencyFields(project, name) {
 function hasDependency(project, name) {
 	return dependencyFields(project, name).length > 0;
 }
-
