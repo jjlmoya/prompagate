@@ -1,7 +1,7 @@
 {
     "name": "@jjlmoya/prompagate",
     "version": "1.1.0",
-    "description": "Propagates shared prompts to all @jjlmoya ecosystem packages",
+    "description": "Propagates shared prompts, QA skills and tests to all @jjlmoya ecosystem packages",
     "author": "jjlmoya",
     "license": "MIT",
     "repository": {
@@ -14,10 +14,13 @@
     "type": "module",
     "files": [
         "prompts",
-        "scripts"
+        "scripts",
+        "skills"
     ],
     "scripts": {
         "postinstall": "node scripts/postinstall.js",
+        "update-all": "node scripts/update-all-packages.js",
+        "test": "node --test test/postinstall.test.js",
         "postversion": "git push && git push --tags",
         "patch": "npm version patch",
         "minor": "npm version minor",

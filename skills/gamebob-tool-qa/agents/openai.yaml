@@ -1,0 +1,5 @@
+interface:
+  display_name: "GameBob Tool QA"
+  short_description: "Audita exactitud, i18n, accesibilidad y SEO"
+  default_prompt: "Usa $gamebob-tool-qa para auditar este repositorio jjlmoya-utils-* e instalar los tests QA objetivos que falten."
+
