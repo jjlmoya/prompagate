@@ -38,7 +38,7 @@ For a standard tool, use the repository's established structure under src/tool/<
 - ui.ts: UI dictionary type and tool-specific UI contract.
 - entry.ts: metadata, icons, routing, and locale loaders.
 - index.ts: public tool exports.
-- component.astro: interactive interface only; do not render the page title or page introduction here.
+- component.astro: the interactive tool surface only. It must start directly with the tool's working area; do not render a visible title, subtitle, intro, hero, marketing copy, "privacy first" panel, SEO copy, FAQ, bibliography, legal block, or generic editorial wrapper inside it.
 - A tool-specific stylesheet in kebab-case with design tokens and light/dark rules.
 - seo.astro: the SEO content container using the repository's shared renderer contract.
 - bibliography.ts: relevant, real, authoritative sources.
@@ -46,6 +46,8 @@ For a standard tool, use the repository's established structure under src/tool/<
 - i18n/en.ts: the complete English ToolLocaleContent<ToolUI> object.
 
 Adapt the structure when the repository already has a more specific contract. Preserve type safety, registration, exports, and the existing shared component APIs. Do not invent fallback locale objects or incomplete registration entries.
+
+The tool is the product surface, not an article header. Keep page-level title, subtitle, SEO, explanatory content, privacy messaging, FAQs, bibliography, and legal content outside the interactive component in the repository's established page/shared renderers. Inside the tool, show only what helps the user perform the task: the controls, the result, relevant status or feedback, and necessary control labels. A visible heading is not allowed inside the tool merely to name it. If semantics require a label, use the repository's established accessible mechanism without turning it into visible editorial content.
 
 Non-negotiable code and content rules:
 
@@ -84,6 +86,7 @@ After implementing the English baseline, before showing it to the user, perform 
 ### Product and visual audit
 
 - Is the tool immediately understandable without a long explanation?
+- Does the interactive surface begin directly with the task, without a visible title, subtitle, intro, hero, "privacy first" block, SEO copy, FAQ, bibliography, legal block, or generic wrapper inside the tool?
 - Does its visual language belong to this domain rather than to a generic template?
 - Can the primary result be seen, compared, manipulated, or explored visually?
 - Can any input be removed, inferred, preset, or embedded in the visualization?
@@ -118,6 +121,7 @@ After implementing the English baseline, before showing it to the user, perform 
 Do not present the baseline as ready if any of these is true:
 
 - It is essentially a generic form, table, or spreadsheet.
+- It places a visible title, subtitle, intro, hero, "privacy first" block, SEO copy, FAQ, bibliography, legal block, or other editorial wrapper inside the interactive tool surface.
 - The main data could be represented visually but is shown only as raw text or fields.
 - It contains inputs that could be removed or replaced by direct manipulation.
 - It has no meaningful interaction feedback.
