@@ -71,6 +71,32 @@ test("updates the managed create-tool skill on reinstall", () => {
 	});
 });
 
+test("migrates legacy Vitest templates out of the skill test glob", () => {
+	withTemporaryProject((project) => {
+		const legacyAsset = join(
+			project,
+			".agents",
+			"skills",
+			"gamebob-tool-qa",
+			"assets",
+			"vitest",
+			"qa_bibliography_links.test.ts",
+		);
+		const migratedAsset = `${legacyAsset}.template`;
+		mkdirSync(dirname(legacyAsset), { recursive: true });
+		writeFileSync(legacyAsset, "legacy template\n", "utf8");
+
+		runPostinstall(project);
+
+		assert.equal(existsSync(legacyAsset), false);
+		assert.equal(existsSync(migratedAsset), true);
+		assert.equal(
+			existsSync(join(project, "src", "tests", "qa_bibliography_links.test.ts")),
+			true,
+		);
+	});
+});
+
 test("does not overwrite project customizations", () => {
 	withTemporaryProject((project) => {
 		const customizedFiles = [

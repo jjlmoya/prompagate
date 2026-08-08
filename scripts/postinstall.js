@@ -3,6 +3,7 @@ import {
 	mkdirSync,
 	readdirSync,
 	copyFileSync,
+	renameSync,
 } from "node:fs";
 import { join, dirname, relative } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -37,11 +38,55 @@ function copyTree(sourceDir, targetDir, label, overwrite = false) {
 	}
 }
 
+function migrateVitestTemplates(sourceDir, targetDir) {
+	if (!existsSync(sourceDir) || !existsSync(targetDir)) return;
+
+	for (const entry of readdirSync(sourceDir, { withFileTypes: true })) {
+		if (!entry.isFile() || !entry.name.endsWith(".template")) continue;
+
+		const legacyName = entry.name.slice(0, -".template".length);
+		const legacyPath = join(targetDir, legacyName);
+		const managedPath = join(targetDir, entry.name);
+
+		if (existsSync(legacyPath) && !existsSync(managedPath)) {
+			renameSync(legacyPath, managedPath);
+			console.log(`[@jjlmoya/prompagate] migrated skill asset ${managedPath}`);
+		}
+	}
+}
+
+function copyVitestTree(sourceDir, targetDir, label) {
+	if (!existsSync(sourceDir)) return;
+	mkdirSync(targetDir, { recursive: true });
+
+	for (const entry of readdirSync(sourceDir, { withFileTypes: true })) {
+		const source = join(sourceDir, entry.name);
+		if (entry.isDirectory()) {
+			copyVitestTree(source, join(targetDir, entry.name), label);
+			continue;
+		}
+
+		const targetName = entry.name.endsWith(".template")
+			? entry.name.slice(0, -".template".length)
+			: entry.name;
+		const target = join(targetDir, targetName);
+
+		if (!existsSync(target)) {
+			copyFileSync(source, target);
+			console.log(`[@jjlmoya/prompagate] copied ${label}/${targetName}`);
+		}
+	}
+}
+
 copyTree(
 	join(packageRoot, "prompts"),
 	join(targetRoot, "prompts"),
 	"prompts",
 );
+
+const vitestSource = join(packageRoot, "skills", "gamebob-tool-qa", "assets", "vitest");
+const vitestSkillTarget = join(targetRoot, ".agents", "skills", "gamebob-tool-qa", "assets", "vitest");
+migrateVitestTemplates(vitestSource, vitestSkillTarget);
 
 copyTree(
 	join(packageRoot, "skills", "gamebob-tool-qa"),
@@ -49,8 +94,8 @@ copyTree(
 	"skill/gamebob-tool-qa",
 );
 
-copyTree(
-	join(packageRoot, "skills", "gamebob-tool-qa", "assets", "vitest"),
+copyVitestTree(
+	vitestSource,
 	join(targetRoot, "src", "tests"),
 	"tests",
 );
