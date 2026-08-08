@@ -1,6 +1,6 @@
 {
     "name": "@jjlmoya/prompagate",
-    "version": "1.3.0",
+    "version": "1.4.0",
     "description": "Propagates shared prompts, QA skills and tests to all @jjlmoya ecosystem packages",
     "author": "jjlmoya",
     "license": "MIT",
